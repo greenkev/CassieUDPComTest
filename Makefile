@@ -21,6 +21,7 @@ all: udp_test
 
 clean:
 	rm -f udp_test
+	rm -f $(MAINOBJS)
 	rm -rf build/
 	rm -rf test/
 

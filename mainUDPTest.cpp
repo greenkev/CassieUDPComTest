@@ -34,13 +34,14 @@ int main() {
     std::cin >> choice;
   }
 
-
+  send_packet(sock_robot, sendrobotbuf, sizeof sendrobotbuf, NULL, 0);
+  std::cout << "choice " << choice << std::endl;
   while (true)
   {
     int inputSize = wait_for_packet(sock_robot, recvrobotbuf, sizeof recvrobotbuf, NULL, NULL);
     //std::cout << "Message Size: " << inputSize << " Message Des size: " << sizeof recvrobotbuf << std::endl;
     // Both are 699
-    unpack_cassie_out_t(recvrobotbuf, &sensors);
+    unpack_cassie_out_t(&recvrobotbuf[PACKET_HEADER_LEN], &sensors);
 
     //Switch the different display choices
     switch(choice){
